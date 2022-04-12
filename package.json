@@ -1,5 +1,5 @@
 {
-  "name": "cheauvagerie",
+  "name": "testvute",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -8,12 +8,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
-    "eslint": "^8.13.0",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "4",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.0",
-    "vite": "^2.9.0"
+    "@vitejs/plugin-vue": "^2.2.0",
+    "eslint": "^8.11.0",
+    "sass": "^1.49.9",
+    "vite": "^2.8.0"
   }
 }
