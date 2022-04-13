@@ -12,14 +12,17 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbar-main">
           <div class="navbar-nav">
-            <router-link to="/" class="navbar-brand">Exercice 2</router-link>
+            <router-link to="/" class="navbar-brand">Cheauvagerie</router-link>
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/page1" class="nav-link">Page 1</router-link>
+              <router-link to="/search" class="nav-link">Consulter</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/page2" class="nav-link">Page 2</router-link>
+              <router-link to="/new" class="nav-link">Créer</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/page2" class="nav-link">Login</router-link>
             </li>
           </ul>
         </div>
@@ -32,18 +35,6 @@
 </template>
 
 <script>
-const pages = {
-  accueil: {
-    title: "Page accueil",
-  },
-  page1: {
-    title: "Page 1",
-  },
-  page2: {
-    title: "Page 2",
-  },
-};
-
 export default {
   data() {
     return {

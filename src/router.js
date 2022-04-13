@@ -1,30 +1,30 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from './views/Home.vue';
-import Page1 from './views/Page1.vue';
-import Page2 from './views/Page2.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "./views/Home.vue";
+import Search from "./views/Search.vue";
+import Create from "./views/Create.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'Accueil',
+    path: "/",
+    name: "Accueil",
     component: Home,
   },
   {
-    path: '/page1',
-    name: 'Page 1',
-    component: Page1,
+    path: "/search",
+    name: "Reports",
+    component: Search,
   },
   {
-    path: '/page2',
-    name: 'Page 2',
-    component: Page2,
+    path: "/new",
+    name: "New report",
+    component: Create,
   },
 ];
 
 const router = createRouter({
   routes,
   history: createWebHistory(),
-  linkActiveClass: 'active',
+  linkActiveClass: "active",
 });
 
 export default router;
