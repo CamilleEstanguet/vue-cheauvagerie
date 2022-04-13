@@ -22,7 +22,7 @@
               <router-link to="/new" class="nav-link">Créer</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/page2" class="nav-link">Login</router-link>
+              <router-link to="/login" class="nav-link">Login</router-link>
             </li>
           </ul>
         </div>

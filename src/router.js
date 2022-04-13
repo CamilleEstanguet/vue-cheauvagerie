@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "./views/Home.vue";
-import Search from "./views/Search.vue";
-import Create from "./views/Create.vue";
+import { createRouter, createWebHistory } from "vue-router"
+import Home from "./views/Home.vue"
+import Search from "./views/Search.vue"
+import Create from "./views/Create.vue"
+import Login from "./views/Login.vue"
 
 const routes = [
   {
@@ -11,13 +12,18 @@ const routes = [
   },
   {
     path: "/search",
-    name: "Reports",
+    name: "Rapports",
     component: Search,
   },
   {
     path: "/new",
-    name: "New report",
+    name: "Nouveau rapport",
     component: Create,
+  },
+  {
+    path: "/login",
+    name: "Se connecter",
+    component: Login,
   },
 ];
 
