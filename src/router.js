@@ -3,6 +3,7 @@ import Home from "./views/Home.vue"
 import Search from "./views/Search.vue"
 import Create from "./views/Create.vue"
 import Login from "./views/Login.vue"
+import Customers from "./views/Customers.vue"
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/login",
     name: "Se connecter",
     component: Login,
+  },
+  {
+    path: "/customers",
+    name: "Clients et chaudières",
+    component: Customers,
   },
 ];
 

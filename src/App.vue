@@ -22,6 +22,9 @@
               <router-link to="/new" class="nav-link">Créer</router-link>
             </li>
             <li class="nav-item">
+              <router-link to="/customers" class="nav-link">Clients</router-link>
+            </li>
+            <li class="nav-item">
               <router-link to="/login" class="nav-link">Login</router-link>
             </li>
           </ul>
