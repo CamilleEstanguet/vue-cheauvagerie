@@ -11,7 +11,7 @@
           <p class="card-text p-y-1">Giga chaudière :</p>
         </div>
       </div>
-      <button type="button">Créer un nouveau Client</button>
+      <router-link to="/" class="btn btn-primary">Créer un nouveau Client</router-link>
     </div>
     <div class="display">
       <h2>Chaudières</h2>
@@ -23,7 +23,7 @@
           <p class="card-text p-y-1">{{ boiler.serialNumber }}</p>
         </div>
       </div>
-      <button type="button">Créer un nouveau Client</button>
+      <router-link to="/" class="btn btn-primary">Créer une nouvelle chaudière</router-link>
     </div>
   </div>
 </template>
