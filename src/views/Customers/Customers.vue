@@ -11,7 +11,7 @@
           <p class="card-text p-y-1">Giga chaudière :</p>
         </div>
       </div>
-      <router-link to="/" class="btn btn-primary">Créer un nouveau Client</router-link>
+      <router-link to="/customers/new-customer" class="btn btn-primary">Créer un nouveau Client</router-link>
     </div>
     <div class="display">
       <h2>Chaudières</h2>
@@ -23,13 +23,13 @@
           <p class="card-text p-y-1">{{ boiler.serialNumber }}</p>
         </div>
       </div>
-      <router-link to="/" class="btn btn-primary">Créer une nouvelle chaudière</router-link>
+      <router-link to="/customers/new-boiler" class="btn btn-primary">Créer une nouvelle chaudière</router-link>
     </div>
   </div>
 </template>
 
 <script>
-import api from "../api.js";
+import api from "../../api.js";
 
 export default {
   data() {
