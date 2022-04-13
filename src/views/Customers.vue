@@ -1,18 +1,30 @@
 <template>
   <div class="container">
     <h1>Clients et chaudières</h1>
-    <h2>Clients</h2>
-    <ul>
-      <li v-for="customer in customers.data" :key="customer.id">
-        {{ customer.name }} {{ customer.firstName }}
-      </li>
-    </ul>
-    <h2>Chaudières</h2>
-    <ul>
-      <li v-for="boiler in boilers.data" :key="boiler.id">
-        {{ boiler.model }}
-      </li>
-    </ul>
+    <div class="display">
+      <h2>Clients</h2>
+      <div class="card" v-for="customer in customers.data" :key="customer.id">
+        <div class="card-block">
+          <h4 class="card-title">
+            {{ customer.name }} {{ customer.firstName }}
+          </h4>
+          <p class="card-text p-y-1">Giga chaudière :</p>
+        </div>
+      </div>
+      <button type="button">Créer un nouveau Client</button>
+    </div>
+    <div class="display">
+      <h2>Chaudières</h2>
+      <div class="card" v-for="boiler in boilers.data" :key="boiler.id">
+        <div class="card-block">
+          <h4 class="card-title">
+            {{ boiler.model }}, {{ boiler.brand }}
+          </h4>
+          <p class="card-text p-y-1">{{ boiler.serialNumber }}</p>
+        </div>
+      </div>
+      <button type="button">Créer un nouveau Client</button>
+    </div>
   </div>
 </template>
 
@@ -24,7 +36,12 @@ export default {
     return {
       loading: false,
       customers: [],
-      boilers: []
+      client: {
+        name: "",
+        firstName: "",
+        adress: "",
+      },
+      boilers: [],
     };
   },
   mounted() {
