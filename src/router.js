@@ -1,13 +1,14 @@
-import { createRouter, createWebHistory } from "vue-router"
-import Home from "./views/Home.vue"
-import Login from "./views/Login.vue"
-import Search from "./views/Reports/Search.vue"
-import Create from "./views/Reports/Create.vue"
-import Customers from "./views/Customers/Customers.vue"
-import NewCustomer from "./views/Customers/CreateCustomer.vue"
-import NewBoiler from "./views/Customers/CreateBoiler.vue"
-import Technicians from "./views/Technicians/Technicians.vue"
-import NewTechnician from "./views/Technicians/CreateTechnician.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "./views/Home.vue";
+import Login from "./views/Login.vue";
+import Search from "./views/Reports/Search.vue";
+import Create from "./views/Reports/Create.vue";
+import Report from "./views/Reports/Report.vue";
+import Customers from "./views/Customers/Customers.vue";
+import NewCustomer from "./views/Customers/CreateCustomer.vue";
+import NewBoiler from "./views/Customers/CreateBoiler.vue";
+import Technicians from "./views/Technicians/Technicians.vue";
+import NewTechnician from "./views/Technicians/CreateTechnician.vue";
 
 const routes = [
   {
@@ -24,6 +25,12 @@ const routes = [
     path: "/search",
     name: "Rapports",
     component: Search,
+  },
+  {
+    path: "/report/:id",
+    name: "Rapport",
+    component: Report,
+    props: true,
   },
   {
     path: "/new",
@@ -49,12 +56,12 @@ const routes = [
     path: "/technicians",
     name: "Techniciens",
     component: Technicians,
-  }, 
+  },
   {
     path: "/technicians/new",
     name: "Nouveau technicien",
     component: NewTechnician,
-  },  
+  },
 ];
 
 const router = createRouter({

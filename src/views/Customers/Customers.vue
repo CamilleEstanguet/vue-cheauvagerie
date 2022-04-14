@@ -35,13 +35,13 @@ export default {
   data() {
     return {
       loading: false,
-      customers: [],
+      customers: {},
       client: {
         name: "",
         firstName: "",
         adress: "",
       },
-      boilers: [],
+      boilers: {},
     };
   },
   mounted() {
@@ -55,6 +55,7 @@ export default {
         .get("customers")
         .then((response) => {
           this.customers = response.data;
+          console.log(this.customers)
         })
         .finally(() => {
           this.loading = false;

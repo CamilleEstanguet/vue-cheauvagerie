@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <h1>Salons</h1>
+    <h1>Rapports</h1>
     <div class="display">
-      <h2>Clients</h2>
       <div class="card" v-for="callout in callouts.data" :key="callout.id">
         <div class="card-block">
           <h4 class="card-title">
@@ -11,6 +10,7 @@
           <p class="card-text p-y-1">
             Réalisée par le technicien {{ callout.techId }}
           </p>
+          <router-link :to="{ name: 'Rapport', params: { id: callouts.id } }">{{ callouts.title }}</router-link>
         </div>
       </div>
     </div>
