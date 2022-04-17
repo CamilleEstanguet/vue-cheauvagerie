@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://lakartxela.iutbayonne.univ-pau.fr/~cestangue001/api-laravelociclette/public/api/',
+  baseURL: 'http://localhost:8080/api/',
 })
 
 export default api
