@@ -5,12 +5,12 @@
       <div class="card" v-for="callout in callouts.data" :key="callout.id">
         <div class="card-block">
           <h4 class="card-title">
-            {{ callout.title }}
+            {{ callout.attributes.title }}
           </h4>
           <p class="card-text p-y-1">
-            Réalisée par le technicien {{ callout.techId }}
+            Réalisée par le technicien
           </p>
-          <router-link :to="{ name: 'Rapport', params: { id: callouts.id } }">{{ callouts.title }}</router-link>
+          <router-link :to="{ name: 'Rapport', params: { id: callout.id } }">{{ callout.attributes.title }}</router-link>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ export default {
     refreshCallOuts() {
       this.loading = true;
       api
-        .get("callouts")
+        .get("call-outs")
         .then((response) => {
           this.callouts = response.data;
         })

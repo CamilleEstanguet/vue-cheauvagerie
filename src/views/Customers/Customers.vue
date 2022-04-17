@@ -6,7 +6,7 @@
       <div class="card" v-for="customer in customers.data" :key="customer.id">
         <div class="card-block">
           <h4 class="card-title">
-            {{ customer.name }} {{ customer.firstName }}
+            {{ customer.attributes.name }} {{ customer.attributes.firstName }}
           </h4>
           <p class="card-text p-y-1">Giga chaudière :</p>
         </div>
@@ -18,7 +18,7 @@
       <div class="card" v-for="boiler in boilers.data" :key="boiler.id">
         <div class="card-block">
           <h4 class="card-title">
-            {{ boiler.model }}, {{ boiler.brand }}
+            {{ boiler.attributes.model }}, {{ boiler.attributes.brand }}
           </h4>
           <p class="card-text p-y-1">{{ boiler.serialNumber }}</p>
         </div>
@@ -55,7 +55,6 @@ export default {
         .get("customers")
         .then((response) => {
           this.customers = response.data;
-          console.log(this.customers)
         })
         .finally(() => {
           this.loading = false;

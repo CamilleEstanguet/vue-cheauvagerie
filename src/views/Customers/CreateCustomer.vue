@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Nouveau client</h1>
-    <form method="post" @submit.prevent="submitDoodle">
+    <form method="post" @submit.prevent="submitCustomer">
       <div class="mb-3">
         <label for="libel_draw" class="form-label">Nom</label>
         <input
@@ -67,7 +67,8 @@ export default {
     };
   },
   methods: {
-    submitDoodle() {
+    submitCustomer() {
+      console.log(this.form)
       api
         .post("customers", this.form)
         .then((response) => {
