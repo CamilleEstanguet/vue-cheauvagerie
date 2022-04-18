@@ -1,42 +1,43 @@
 <template>
   <div class="container">
+  <i v-if="loading" class="fas fa-spinner fa-pulse"></i>
     <h1>Rapport</h1>
     <div class="display">
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Technicien en charge :</h4>
-          <p class="card-text p-y-1">{{ tName }} {{ tFirstName }}</p>
+          <p class="card-text p-y-1">{{ this.technician.firstName }} {{ this.technician.name }}</p>
         </div>
       </div>
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Client :</h4>
           <p class="card-text p-y-1">
-            Nom et Prénom : {{ cName }} {{ cFirstName }}
+            Nom et Prénom : {{ this.customer.firstName }} {{ this.customer.name }}
           </p>
-          <p class="card-text p-y-1">Adresse : {{ cAddress }}</p>
+          <p class="card-text p-y-1">Adresse : {{ this.customer.address }}</p>
         </div>
       </div>
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Chaudière :</h4>
-          <p class="card-text p-y-1">Marque : {{ bBrand }}</p>
-          <p class="card-text p-y-1">Modèle : {{ bModel }}</p>
-          <p class="card-text p-y-1">Numéro de série : {{ bSNum }}</p>
-          <p class="card-text p-y-1">Mise en service : {{ bStart }}</p>
+          <p class="card-text p-y-1">Marque : {{ this.boiler.brand }}</p>
+          <p class="card-text p-y-1">Modèle : {{ this.boiler.model }}</p>
+          <p class="card-text p-y-1">Numéro de série : {{ this.boiler.serialNumber }}</p>
+          <p class="card-text p-y-1">Mise en service : {{ this.boiler.startDate }}</p>
         </div>
       </div>
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Date :</h4>
-          <p class="card-text p-y-1">Date : {{ coDate }}</p>
-          <p class="card-text p-y-1">Durée : {{ coDuration }}</p>
+          <p class="card-text p-y-1">Date : {{ this.callout.date }}</p>
+          <p class="card-text p-y-1">Durée : {{ this.callout.duration }}</p>
         </div>
       </div>
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Détail de l'intervention :</h4>
-          <p class="card-text p-y-1">{{ coDescription }}</p>
+          <p class="card-text p-y-1">{{ this.callout.description }}</p>
         </div>
       </div>
     </div>
@@ -82,8 +83,11 @@ export default {
       api
         .get("call-outs/" + this.idReport + "?populate[technician]=*")
         .then((response) => {
-          this.callout = response.data;
-          this.technician = this.callout.data.attributes.technician;
+          this.callout = response.data.data.attributes;
+          this.technician = this.callout.technician.data.attributes;
+          console.log(this.callout)
+          console.log(this.technician)
+
         });
       api
         .get(
@@ -92,24 +96,14 @@ export default {
             "?populate[boiler][populate][0]=customer"
         )
         .then((response) => {
-          this.boiler = response.data;
+          this.boiler = response.data.data.attributes.boiler.data.attributes;
+          this.customer = this.boiler.customer.data.attributes;
+          console.log(this.boiler)
+          console.log(this.customer)
         })
         .finally(() => {
           this.loading = false;
         });
-      this.customer = this.boiler.data.attributes.customer;
-      this.coDate = this.callout.data.attributes.date;
-      this.coDuration = this.callout.data.attributes.duration;
-      this.coDescription = this.callout.data.attributes.description;
-      this.bBrand = this.boiler.data.attributes.brand;
-      this.bModel = this.boiler.data.attributes.model;
-      this.bSNum = this.boiler.data.attributes.serialNumber;
-      this.bStart = this.boiler.data.attributes.startDate;
-      this.cName = this.customer.data.attributes.name;
-      this.cFirstName = this.customer.data.attributes.firstName;
-      this.cAddress = this.customer.data.attributes.address;
-      this.tName = this.technician.data.attributes.name;
-      this.tFirstName = this.technician.data.attributes.firstName;
     },
   },
 };
