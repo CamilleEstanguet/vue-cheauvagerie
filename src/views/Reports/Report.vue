@@ -73,8 +73,6 @@ export default {
     };
   },
   mounted() {
-    this.idReport = this.id;
-    console.log(this.idReport);
     this.refreshReport();
   },
   methods: {

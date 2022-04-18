@@ -36,7 +36,9 @@
           aria-describedby="numHelp"
         />
         <div id="addHelp" class="form-text">Numéro de la chaudière</div>
-        <label for="libel_draw" class="form-label">Date de mise en service</label>
+        <label for="libel_draw" class="form-label"
+          >Date de mise en service</label
+        >
         <input
           type="text"
           class="form-control"
@@ -46,40 +48,63 @@
           v-model="form.data.startDate"
           aria-describedby="numHelp"
         />
-        <div id="addHelp" class="form-text">Date</div>
+        <div id="addHelp" class="form-text">Date (format aaaa-mm-dd)</div>
       </div>
+      <select
+        class="form-select form-select-sm"
+        aria-label=".form-select-sm example"
+      >
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
       <button type="submit" class="btn btn-primary">Créer</button>
     </form>
   </div>
 </template>
 
 <script>
-import api from "../../api.js";
+import api from "../../api.js"
 export default {
   data() {
     return {
       form: {
         data: {
           brand: "",
-          firstName: "",
-          address: "",
-          phoneNumber: "",
+          model: "",
+          serialNumber: "",
+          startDate: "",
         },
       },
-    };
+      customers: {},
+    }
   },
+  mounted() {
+    this.getCustomersList()
+  }
   methods: {
+    getCustomersList(){
+        api
+        .get("customers")
+        .then((response) => {
+          this.customers = response.data.attributes
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    }
     submitCustomer() {
-      console.log(this.form);
+      console.log(this.form)
       api
         .post("boilers", this.form)
         .then((response) => {
-          this.$router.push("/customers");
+          this.$router.push("/customers")
         })
         .catch((error) => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     },
   },
-};
+}
 </script>
