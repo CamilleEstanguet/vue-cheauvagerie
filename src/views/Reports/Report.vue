@@ -36,7 +36,7 @@
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">Détail de l'intervention :</h4>
-          <p class="card-text p-y-1">{{ cDescription }}</p>
+          <p class="card-text p-y-1">{{ coDescription }}</p>
         </div>
       </div>
     </div>
@@ -55,9 +55,6 @@ export default {
       boiler: {},
       customer: {},
       technician: {},
-      idTech: 1,
-      idBoiler: 1,
-      idCustomer: 1,
       tName: "",
       tFirstName: "",
       cName: "",
@@ -69,7 +66,7 @@ export default {
       bStart: "",
       coDate: "",
       coDuration: "",
-      cDescription: "",
+      coDescription: "",
 
       idReport: 0,
     };
@@ -82,38 +79,37 @@ export default {
   methods: {
     refreshReport() {
       this.loading = true;
-      api.get("call-outs/" + this.idReport).then((response) => {
-        this.callout = response.data;
-        //this.idTech = 1;
-        //this.idBoiler = 1;
-        this.coDate = this.callout.data.attributes.date;
-        this.coDuration = this.callout.data.attributes.duration;
-        this.coDescription = this.callout.data.attributes.description;
-      });
-      api.get("boilers/" + this.idBoiler).then((response) => {
-        this.boiler = response.data;
-        //this.idCustomer = 1;
-        this.bBrand = this.boiler.data.attributes.brand;
-        this.bModel = this.boiler.data.attributes.model;
-        this.bSNum = this.boiler.data.attributes.serialNumber;
-        this.bStart = this.boiler.data.attributes.startDate;
-      });
-      api.get("customers/" + this.idCustomer).then((response) => {
-        this.customer = response.data;
-        this.cName = this.customer.data.attributes.name;
-        this.cFirstName = this.customer.data.attributes.firstName;
-        this.cAddress = this.customer.data.attributes.address;
-      });
       api
-        .get("technicians/" + this.idTech)
+        .get("call-outs/" + this.idReport + "?populate[technician]=*")
         .then((response) => {
-          this.technician = response.data;
-          this.tName = this.technician.data.attributes.name;
-          this.tFirstName = this.technician.data.attributes.firstName;
+          this.callout = response.data;
+          this.technician = this.callout.data.attributes.technician;
+        });
+      api
+        .get(
+          "call-outs/" +
+            this.idReport +
+            "?populate[boiler][populate][0]=customer"
+        )
+        .then((response) => {
+          this.boiler = response.data;
         })
         .finally(() => {
           this.loading = false;
         });
+      this.customer = this.boiler.data.attributes.customer;
+      this.coDate = this.callout.data.attributes.date;
+      this.coDuration = this.callout.data.attributes.duration;
+      this.coDescription = this.callout.data.attributes.description;
+      this.bBrand = this.boiler.data.attributes.brand;
+      this.bModel = this.boiler.data.attributes.model;
+      this.bSNum = this.boiler.data.attributes.serialNumber;
+      this.bStart = this.boiler.data.attributes.startDate;
+      this.cName = this.customer.data.attributes.name;
+      this.cFirstName = this.customer.data.attributes.firstName;
+      this.cAddress = this.customer.data.attributes.address;
+      this.tName = this.technician.data.attributes.name;
+      this.tFirstName = this.technician.data.attributes.firstName;
     },
   },
 };
