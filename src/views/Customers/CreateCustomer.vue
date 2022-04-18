@@ -10,7 +10,7 @@
           required
           id="name"
           name="name"
-          v-model="form.name"
+          v-model="form.data.name"
           aria-describedby="nameHelp"
         />
         <div id="nameHelp" class="form-text">Nom du client.</div>
@@ -21,7 +21,7 @@
           required
           id="firstName"
           name="firstName"
-          v-model="form.firstName"
+          v-model="form.data.firstName"
           aria-describedby="fNameHelp"
         />
         <div id="fNameHelp" class="form-text">Prénom du client.</div>
@@ -32,21 +32,10 @@
           required
           id="address"
           name="address"
-          v-model="form.address"
+          v-model="form.data.address"
           aria-describedby="addHelp"
         />
         <div id="addHelp" class="form-text">Adresse de résidence.</div>
-        <label for="libel_draw" class="form-label">Numéro de téléphone</label>
-        <input
-          type="text"
-          class="form-control"
-          required
-          id="phoneNumber"
-          name="phoneNumber"
-          v-model="form.phoneNumber"
-          aria-describedby="phoneHelp"
-        />
-        <div id="phoneHelp" class="form-text">Téléphone du client.</div>
       </div>
       <button type="submit" class="btn btn-primary">Créer</button>
     </form>
@@ -59,26 +48,26 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        firstName: "",
-        address: "",
-        phoneNumber: "",
+        data: {
+          name: "",
+          firstName: "",
+          address: "",
+          phoneNumber: "",
+        },
       },
     };
   },
   methods: {
     submitCustomer() {
-      console.log(this.form)
+      console.log(this.form);
       api
         .post("customers", this.form)
         .then((response) => {
-          // renvoie le dessin créé
-          console.log(response.data);
+          this.$router.push("/customers");
         })
         .catch((error) => {
           console.log(error);
         });
-      //this.$router.push("/customers");
     },
   },
 };
