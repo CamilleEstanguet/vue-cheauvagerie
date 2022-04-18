@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <button
           class="navbar-toggler"
@@ -16,16 +16,10 @@
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/search" class="nav-link">Consulter</router-link>
+              <router-link to="/search" class="nav-link">Rapports</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/new" class="nav-link">Créer</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/customers" class="nav-link">Clients</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link">Login</router-link>
+              <router-link to="/customers" class="nav-link">Produits</router-link>
             </li>
           </ul>
         </div>
@@ -57,4 +51,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+ body {
+   background-color: #ddddee;
+ }
+ .card {
+   background-color: #ddeaff;
+ }
+</style>
